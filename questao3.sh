@@ -1,3 +1,4 @@
 #!/bin/bash
 
-echo $(ping 8.8.8.8 -c 4) && &>> /tmp/report.txt
+ping -v www.google.com  | tee /tmp/report.txt
+exit 0

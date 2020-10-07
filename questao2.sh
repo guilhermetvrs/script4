@@ -1,9 +1,14 @@
 #!/bin/bash
 
-echo $(cat a.txt |head -1 | tail -1) > linha1.txt
-echo $(cat a.txt |head -2 | tail -1) >linha2.txt
-echo $(cat a.txt |head -3 | tail -1) >linha3.txt
+linha1=$(cat $1 | awk '/obase/')
+linha2=$(cat $1 | awk '/43/')
+linha3=$(cat $1 | awk '/10/')
 
-echo $(bc  a.txt)
-echo $(bc  linha2.txt)
-echo $(bc  linha3.txt) 
+operacao1=$(bc <<< "${linha1};${linha2}")
+operacao2=$(bc <<< "${linha1};${linha3}")
+echo "sem o | "
+echo "${operacao1}"
+echo "${operacao2}"
+echo "com o |"
+echo "$linha1;$linha2" | bc
+echo "$linha1;$linha3" | bc
